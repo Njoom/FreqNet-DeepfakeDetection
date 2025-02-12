@@ -23,7 +23,7 @@ class BaseOptions():
         parser.add_argument('--jpg_method', default='cv2')
         parser.add_argument('--jpg_qual', default='75')
 
-        parser.add_argument('--dataroot', default='/content/drive/MyDrive/CelebA_Test_FreqNet Paper', help='path to images (should have subfolders trainA, trainB, valA, valB, etc)')
+        parser.add_argument('--dataroot', default='/content/drive/MyDrive/CelebA_Test_FreqNetPaper', help='path to images (should have subfolders trainA, trainB, valA, valB, etc)')
         parser.add_argument('--classes', default='2', help='image classes to train on')
         parser.add_argument('--class_bal', action='store_true')
         parser.add_argument('--batch_size', type=int, default=64, help='input batch size')
