@@ -28,8 +28,8 @@ from util import Logger
 
 
 # test config
-vals = ['progan', 'stylegan', 'stylegan2', 'biggan', 'cyclegan', 'stargan', 'gaugan', 'deepfake']
-multiclass = [1, 1, 1, 0, 1, 0, 0, 0]
+#vals = ['progan', 'stylegan', 'stylegan2', 'biggan', 'cyclegan', 'stargan', 'gaugan', 'deepfake']
+#multiclass = [1, 1, 1, 0, 1, 0, 0, 0]
 
 
 def get_val_opt():
