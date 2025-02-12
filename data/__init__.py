@@ -8,7 +8,7 @@ from .datasets import dataset_folder
 def get_dataset(opt):
     dset_lst = []
     for cls in opt.classes:
-        root = opt.dataroot + '/' + cls
+        root = opt.dataroot + cls
         dset = dataset_folder(opt, root)
         dset_lst.append(dset)
     return torch.utils.data.ConcatDataset(dset_lst)
