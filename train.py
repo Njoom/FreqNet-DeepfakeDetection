@@ -64,10 +64,13 @@ if __name__ == '__main__':
     def testmodel():
         print('*'*25);accs = [];aps = []
         print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
+         
        
         for v_id, val in enumerate(vals):
-            Testopt.dataroot = '{}/{}'.format(Testdataroot, val)
-            Testopt.classes = os.listdir(Testopt.dataroot) # if multiclass[v_id] else ['']
+            Testopt.dataroot = Testdataroot
+            class_directory = os.path.join(Testopt.dataroot, val)  # Construct the full path for the class
+            print("Class directory:", class_directory)  # Debugging line
+            Testopt.classes = os.listdir(class_directory) 
             Testopt.no_resize = False
             Testopt.no_crop = True
             acc, ap, _, _, _, _ = validate(model.model, Testopt)
