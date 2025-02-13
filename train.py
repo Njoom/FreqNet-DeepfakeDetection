@@ -64,9 +64,10 @@ if __name__ == '__main__':
     def testmodel():
         print('*'*25);accs = [];aps = []
         print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
-        print("Testopt.dataroot:", Testopt.dataroot)
+       
         for v_id, val in enumerate(vals):
             Testopt.dataroot = '{}/{}'.format(Testdataroot, val)
+            print("Testopt.dataroot:", Testopt.dataroot)
             Testopt.classes = os.listdir(Testopt.dataroot) if multiclass[v_id] else ['']
             Testopt.no_resize = False
             Testopt.no_crop = True
