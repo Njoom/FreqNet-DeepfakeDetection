@@ -54,7 +54,7 @@ model.eval()
     accs = [];aps = []
     print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
     for v_id, val in enumerate(dataroot):
-        opt.dataroot = '{}/{}'.format(dataroot, val)
+        opt.dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/'
         class_directory = os.path.join(Testopt.dataroot, val)
         opt.classes  = os.listdir(class_directory)
         opt.no_resize = False
