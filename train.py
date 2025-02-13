@@ -32,7 +32,7 @@ from util import Logger
 #multiclass = [1, 1, 1, 0, 1, 0, 0, 0]
 
 vals = ['0_real', '1_fake']
-multiclass = [0, 1,]
+multiclass = [False, False]
 
 def get_val_opt():
     val_opt = TrainOptions().parse(print_options=False)
