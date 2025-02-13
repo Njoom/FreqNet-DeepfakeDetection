@@ -5,7 +5,7 @@ class TestOptions(BaseOptions):
     def initialize(self, parser):
         parser = BaseOptions.initialize(self, parser)
         # parser.add_argument('--dataroot')
-        parser.add_argument('--model_path',type=str, required=True, help='Path to the trained model file (e.g., model_epoch_last.pth)')
+        parser.add_argument('--model_path',type=str, help='Path to the trained model file (e.g., model_epoch_last.pth)')
         parser.add_argument('--no_resize', action='store_true')
         parser.add_argument('--no_crop', action='store_true')
         parser.add_argument('--eval', action='store_true', help='use eval mode during test time.')
