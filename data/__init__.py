@@ -16,6 +16,18 @@ def get_dataset(opt):
 
 import os
 def get_dataset(opt):
+    opt.dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/'
+    print("Dataset root directory:", opt.dataroot)  # This should now print the parent directory
+
+    # Specify the path where the actual test data is located
+    test_data_dir = os.path.join(opt.dataroot, 'test')
+    
+    # Get classes from the test directory
+    classes = os.listdir(test_data_dir)
+    print("Classes found in test directory:", classes)
+
+
+    
     print("Dataset root directory:", opt.dataroot)
     classes = os.listdir(opt.dataroot) 
     print("Classes found:", classes)
