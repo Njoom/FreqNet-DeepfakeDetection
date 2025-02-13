@@ -24,7 +24,7 @@ def get_dataset(opt):
         dset_lst = []
         for cls in classes:
             root = opt.dataroot + '/' + cls
-             print("Creating dataset for class directory:", root)
+            print("Creating dataset for class directory:", root)
             dset = dataset_folder(opt, root)
             dset_lst.append(dset)
         return torch.utils.data.ConcatDataset(dset_lst)
