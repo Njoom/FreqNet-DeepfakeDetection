@@ -44,17 +44,21 @@ model.cuda()
 model.eval()
 
 
-for testSet in DetectionTests.keys():
-    dataroot = DetectionTests[testSet]['dataroot']
-    printSet(testSet)
+#for testSet in DetectionTests.keys():
+ #   dataroot = DetectionTests[testSet]['dataroot']
+  #  printSet(testSet)
 
+
+
+  
     accs = [];aps = []
     print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
-    for v_id, val in enumerate(os.listdir(dataroot)):
+    for v_id, val in enumerate(dataroot):
         opt.dataroot = '{}/{}'.format(dataroot, val)
-        opt.classes  = '' #os.listdir(opt.dataroot) if multiclass[v_id] else ['']
-        opt.no_resize = DetectionTests[testSet]['no_resize']
-        opt.no_crop   = DetectionTests[testSet]['no_crop']
+        class_directory = os.path.join(Testopt.dataroot, val)
+        opt.classes  = os.listdir(class_directory)
+        opt.no_resize = False
+        opt.no_crop   = True
         acc, ap, _, _, _, _ = validate(model, opt)
         accs.append(acc);aps.append(ap)
         print("({} {:12}) acc: {:.1f}; ap: {:.1f}".format(v_id, val, acc*100, ap*100))
