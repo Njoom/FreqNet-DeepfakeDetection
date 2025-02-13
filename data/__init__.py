@@ -16,11 +16,15 @@ def get_dataset(opt):
 
 import os
 def get_dataset(opt):
+    print("Dataset root directory:", opt.dataroot)
     classes = os.listdir(opt.dataroot) if len(opt.classes) == 0 else opt.classes
+    print("Classes found:", classes)
     if '0_real' not in classes or '1_fake' not in classes:
+        print("Required classes not found. Proceeding to create datasets for available classes.")
         dset_lst = []
         for cls in classes:
             root = opt.dataroot + '/' + cls
+             print("Creating dataset for class directory:", root)
             dset = dataset_folder(opt, root)
             dset_lst.append(dset)
         return torch.utils.data.ConcatDataset(dset_lst)
