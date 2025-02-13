@@ -18,7 +18,6 @@ import os
 def get_dataset(opt):
     opt.dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/'
     print("Dataset root directory:", opt.dataroot)  # This should now print the parent directory
-
     # Specify the path where the actual test data is located
     test_data_dir = os.path.join(opt.dataroot, 'test')
     
@@ -26,17 +25,12 @@ def get_dataset(opt):
     classes = os.listdir(test_data_dir)
     print("Classes found in test directory:", classes)
 
-
-    
-    print("Dataset root directory:", opt.dataroot)
-    classes = os.listdir(opt.dataroot) 
-    print("Classes found:", classes)
     if '0_real' not in classes or '1_fake' not in classes:
         print("Required classes not found. Proceeding to create datasets for available classes.")
         dset_lst = []
         for cls in classes:
-            root = opt.dataroot + '/' + cls
-            print("Creating dataset for class directory:", root)
+            class_path = os.path.join(test_data_dir, cls)
+            print("Creating dataset for class directory:", class_path)  # Debugging line
             dset = dataset_folder(opt, root)
             dset_lst.append(dset)
         return torch.utils.data.ConcatDataset(dset_lst)
