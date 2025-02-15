@@ -27,11 +27,11 @@ DetectionTests = {
 
 opt = TestOptions().parse(print_options=False)
 vals = ['0_real', '1_fake']
+#dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/test'
+Testdataroot = os.path.join(opt.dataroot, 'test')
+
 print(f'Model_path {opt.model_path}')
-
-
 model = freqnet(num_classes=1)
-dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/test'
 
 model.load_state_dict(torch.load(opt.model_path, map_location='cpu'), strict=True)
 model.cuda()
@@ -40,6 +40,7 @@ accs = [];aps = []
 print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
 """
 #train.py copy
+
  for v_id, val in enumerate(vals):
             Testopt.dataroot = Testdataroot
             class_directory = os.path.join(Testopt.dataroot, val)  # Construct the full path for the class
@@ -51,10 +52,10 @@ for v_id, val in enumerate(os.listdir(dataroot)):
         opt.classes  = '' #os.listdir(opt.dataroot) if multiclass[v_id] else ['']
 """
 
-for v_id, val in enumerate(os.listdir(dataroot)):
-  opt.dataroot = '{}/{}'.format(dataroot, val)
-  class_directory = os.path.join(opt.dataroot, val)
-  opt.classes  = os.listdir(class_directory)
+for v_id, val in enumerate(vals):
+  Testopt.dataroot = Testdataroot
+  class_directory = os.path.join(Testopt.dataroot, val)  
+  Testopt.classes  = os.listdir(class_directory)
   opt.no_resize = False
   opt.no_crop   = True
   acc, ap, _, _, _, _ = validate(model, opt)
