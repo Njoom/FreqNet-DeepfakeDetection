@@ -26,6 +26,7 @@ DetectionTests = {
 
 
 opt = TestOptions().parse(print_options=False)
+vals = ['0_real', '1_fake']
 print(f'Model_path {opt.model_path}')
 
 
