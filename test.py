@@ -37,6 +37,16 @@ model.cuda()
 model.eval()
 accs = [];aps = []
 print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
+
+#train.py copy
+ for v_id, val in enumerate(vals):
+            Testopt.dataroot = Testdataroot
+            class_directory = os.path.join(Testopt.dataroot, val)  # Construct the full path for the class
+            print("Class directory:", class_directory)  # Debugging line
+            Testopt.classes = os.listdir(class_directory) 
+
+
+
 for v_id, val in enumerate(os.listdir(dataroot)):
   opt.dataroot = '{}/{}'.format(dataroot, val)
   class_directory = os.path.join(Testopt.dataroot, val)
