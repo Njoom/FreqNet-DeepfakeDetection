@@ -113,9 +113,12 @@ if __name__ == '__main__':
         model.train()
 
     model.eval();testmodel()
+    model.save_networks('last')
+    """
     save_dir = './checkpoints/'  # Specify your desired directory
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     model.save_networks(os.path.join(save_dir, 'model_epoch_last.pth'))  # Save the model with a specific name
+    """
     
     
