@@ -28,6 +28,7 @@ DetectionTests = {
 opt = TestOptions().parse(print_options=False)
 vals = ['0_real', '1_fake']
 #dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/test'
+Testopt = TestOptions().parse(print_options=False)
 Testdataroot = os.path.join(opt.dataroot, 'test')
 
 print(f'Model_path {opt.model_path}')
