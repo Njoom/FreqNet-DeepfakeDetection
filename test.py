@@ -26,6 +26,7 @@ DetectionTests = {
 
 
 opt = TestOptions().parse(print_options=False)
+opt.model_path = './checkpoints/experiment_name2025_02_15_14_53_59/model_epoch_last.pth'
 print(f'Model_path {opt.model_path}')
 
 # get model
@@ -45,7 +46,7 @@ model.eval()
 accs = [];aps = []
 print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
 for v_id, val in enumerate(dataroot):
-  opt.dataroot = './checkpoints/experiment_name2025_02_15_14_53_59/model_epoch_last.pth'
+  opt.dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/test'
   class_directory = os.path.join(Testopt.dataroot, val)
   opt.classes  = os.listdir(class_directory)
   opt.no_resize = False
