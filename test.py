@@ -26,27 +26,19 @@ DetectionTests = {
 
 
 opt = TestOptions().parse(print_options=False)
-#opt.model_path = './checkpoints/experiment_name2025_02_15_14_53_59/model_epoch_last.pth'
 print(f'Model_path {opt.model_path}')
 
-# get model
-model = freqnet(num_classes=1)
 
-# from collections import OrderedDict
-# from copy import deepcopy
-# state_dict = torch.load(opt.model_path, map_location='cpu')['model']
-# pretrained_dict = OrderedDict()
-# for ki in state_dict.keys():
-    # pretrained_dict[ki[7:]] = deepcopy(state_dict[ki])
-# model.load_state_dict(pretrained_dict, strict=True)
+model = freqnet(num_classes=1)
+dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/test'
 
 model.load_state_dict(torch.load(opt.model_path, map_location='cpu'), strict=True)
 model.cuda()
 model.eval()
 accs = [];aps = []
 print(time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime()))
-for v_id, val in enumerate(dataroot):
-  opt.dataroot = '/content/drive/MyDrive/CelebA_Test_FreqNetPaper/test'
+for v_id, val in enumerate(os.listdir(dataroot)):
+  opt.dataroot = '{}/{}'.format(dataroot, val)
   class_directory = os.path.join(Testopt.dataroot, val)
   opt.classes  = os.listdir(class_directory)
   opt.no_resize = False
