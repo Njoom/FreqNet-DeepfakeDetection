@@ -26,7 +26,7 @@ DetectionTests = {
 
 
 opt = TestOptions().parse(print_options=False)
-opt.model_path = './checkpoints/experiment_name2025_02_15_14_53_59/model_epoch_last.pth'
+#opt.model_path = './checkpoints/experiment_name2025_02_15_14_53_59/model_epoch_last.pth'
 print(f'Model_path {opt.model_path}')
 
 # get model
