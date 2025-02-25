@@ -188,14 +188,16 @@ class FreqNet(nn.Module):
         
         
     def forward(self, x):
-        
+        print(f'output shape of input image: {x.shape}')
         ### HFRI
         x = self.hfreqWH(x, 4)
+        print(f'output shape of the 1st HFRI block: {x.shape}')
         x = F.conv2d(x, self.weight1, self.bias1, stride=1, padding=0)
         x = F.relu(x, inplace=True)
         
         ### HFRFC
         x = self.hfreqC(x, 4)
+        print(f'output shape of the 1st HFRFC block: {x.shape}')
         
         ### FCL
         x = torch.fft.fft2(x, norm="ortho")#,norm='forward'
@@ -205,14 +207,17 @@ class FreqNet(nn.Module):
         x = torch.fft.ifft2(x, norm="ortho")
         x = torch.real(x)
         x = F.relu(x, inplace=True)
+        print(f'output shape of the 1st FCL block: {x.shape}, min: {x.min()}, max: {x.max()}, mean: {x.mean()}')
 
         ### HFRFS
         x = self.hfreqWH(x, 4)
         x = F.conv2d(x, self.weight2, self.bias2, stride=2, padding=0)
         x = F.relu(x, inplace=True)
+        print(f'output shape of the 1st HFRFS block: {x.shape}')
 
         ### HFRFC
         x = self.hfreqC(x, 4)
+        print(f'output shape of the 2nd HFRFC block: {x.shape}')
         
         ### FCL
         x = torch.fft.fft2(x, norm="ortho")#,norm='forward'
@@ -222,6 +227,7 @@ class FreqNet(nn.Module):
         x = torch.fft.ifft2(x, norm="ortho")
         x = torch.real(x)
         x = F.relu(x, inplace=True)
+        print(f'output shape of the 2nd FCL block: {x.shape}')
 
 
         x = self.maxpool(x)
@@ -232,7 +238,7 @@ class FreqNet(nn.Module):
         x = self.hfreqWH(x, 4)
         x = F.conv2d(x, self.weight3, self.bias3, stride=1, padding=0)
         x = F.relu(x, inplace=True)
-        
+        print(f'output shape of the 2nd HFRFS block: {x.shape}')
         
         ### FCL
         x = torch.fft.fft2(x, norm="ortho")#,norm='forward'
@@ -242,11 +248,13 @@ class FreqNet(nn.Module):
         x = torch.fft.ifft2(x, norm="ortho")
         x = torch.real(x)
         x = F.relu(x, inplace=True)
+        print(f'output shape of 3rd FCL block: {x.shape}')
 
         ### HFRFS
         x = self.hfreqWH(x, 4)
         x = F.conv2d(x, self.weight4, self.bias4, stride=2, padding=0)
         x = F.relu(x, inplace=True)
+        print(f'output shape of 3rd HFRFS block: {x.shape}')
 
         ### FCL
         x = torch.fft.fft2(x, norm="ortho")#,norm='forward'
@@ -256,6 +264,7 @@ class FreqNet(nn.Module):
         x = torch.fft.ifft2(x, norm="ortho")
         x = torch.real(x)
         x = F.relu(x, inplace=True)
+        print(f'output shape of 4th FCL block: {x.shape}')
 
         x = self.layer2(x)
 
