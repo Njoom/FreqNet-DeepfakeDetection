@@ -156,7 +156,7 @@ class FreqNet(nn.Module):
     def hfreqWH(self, x, scale):
         assert scale>2
         #print(f'input shape: {x.shape}, min: {x.min()}, max: {x.max()}, mean: {x.mean()}')
-        x = torch.fft.fft2(x, norm="ortho")#,norm='forward'
+        x = torch.fft.fft2(x, norm="ortho")#,norm='forward', dim defualt is -1; means width!.
         x = torch.fft.fftshift(x, dim=[-2, -1]) 
         b,c,h,w = x.shape
         x[:,:,h//2-h//scale:h//2+h//scale,w//2-w//scale:w//2+w//scale ] = 0.0
@@ -171,7 +171,8 @@ class FreqNet(nn.Module):
     def hfreqC(self, x, scale):
         assert scale>2
         # print(f'input shape: {x.shape}, min: {x.min()}, max: {x.max()}, mean: {x.mean()}')
-        x = torch.fft.fft(x, dim=1, norm="ortho")#,norm='forward'
+        #explain (dim):If your input tensor input has the shape (batch_size, channels, height, width):dim=-1 refers to the last dimension, which is the width,dim=1 refers to the second dimension, which is the channels,dim=2 refers to the third dimension, which is the height.
+        x = torch.fft.fft(x, dim=1, norm="ortho")#,norm='forward', dim=1 means channel dim.
         x = torch.fft.fftshift(x, dim=1) 
         b,c,h,w = x.shape
 
