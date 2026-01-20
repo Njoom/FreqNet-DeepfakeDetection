@@ -269,6 +269,13 @@ class FreqNet(nn.Module):
 
         x = self.layer2(x)
 
+        
+        # ---- NEW BIT HERE ----
+        if return_feature_map:
+            # This is the tensor we’ll give to DRN
+            return x
+        # ----------------------
+
         x = self.avgpool(x)
         x = x.view(x.size(0), -1)
         x = self.fc1(x)
