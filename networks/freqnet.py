@@ -188,7 +188,7 @@ class FreqNet(nn.Module):
         return x
         
         
-    def forward(self, x):
+    def forward(self, x,  return_feature_map=False):
         print(f'output shape of input image: {x.shape}')
         ### HFRI
         x = self.hfreqWH(x, 4)
